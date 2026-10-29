@@ -42,10 +42,15 @@ jobs:
           cache: pnpm
           cache-dependency-path: app/pnpm-lock.yaml
       - uses: dtolnay/rust-toolchain@stable
+        with:
+          components: clippy, rustfmt
       - uses: Swatinem/rust-cache@v2
         with:
           workspaces: app/src-tauri
       - run: pnpm install --frozen-lockfile
+      - run: pnpm lint
       - run: pnpm build
-      - run: cargo check --locked
+      - run: cargo fmt --check
+        working-directory: app/src-tauri
+      - run: cargo clippy --locked --all-targets -- -D warnings
         working-directory: app/src-tauri

@@ -37,7 +37,14 @@ line-length = 100
 target-version = "py311"
 
 [tool.ruff.lint]
-select = ["E", "F", "I", "B", "UP"]
+select = ["E", "F", "I", "B", "UP", "S"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = ["S"]
+# Fixed command lines (OBS install and launch, build tooling) and constant HTTPS model URLs.
+"src/hocus/system.py" = ["S603", "S607"]
+"src/hocus/vision/models.py" = ["S310"]
+"../scripts/*" = ["S603", "S607"]
 
 [tool.ruff.lint.isort]
 known-first-party = ["hocus", "hands"]
