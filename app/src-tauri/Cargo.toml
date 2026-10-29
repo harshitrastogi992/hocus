@@ -1,0 +1,35 @@
+[package]
+name = "hocus"
+version = "0.1.0"
+description = "Hocus desktop shell"
+authors = ["Hocus contributors"]
+license = "MIT"
+edition = "2024"
+
+[lib]
+name = "hocus_lib"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[dependencies]
+tauri = { version = "2", features = [] }
+tauri-plugin-shell = "2"
+tauri-plugin-dialog = "2"
+tauri-plugin-opener = "2"
+uuid = { version = "1", features = ["v4"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+
+
+[profile.release]
+codegen-units = 1
+lto = true
+opt-level = 3
+panic = "abort"
+strip = true
+
+# Stripping proc-macro dylibs leaves a LINKEDIT layout that dyld on macOS 27 refuses to load.
+[profile.release.build-override]
+strip = false

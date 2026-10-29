@@ -1,0 +1,36 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+build/
+
+# Vision models are downloaded at runtime
+*.task
+*.tflite
+
+# Node / Vite
+node_modules/
+app/dist/
+
+# Tauri
+app/src-tauri/target/
+app/src-tauri/gen/
+app/src-tauri/binaries/
+
+# OS and editors
+.DS_Store
+Thumbs.db
+.vscode/*
+!.vscode/extensions.json
+.idea/
+
+# Local test output
+effect-previews/
+.playwright-mcp/
+
+# Claude Code (local only)
+CLAUDE.md
+.claude/
