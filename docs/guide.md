@@ -12,7 +12,7 @@ Hocus checks five things every time it opens:
 |---|---|---|
 | Engine | The vision engine started on this computer | Use **Restart**. If it keeps failing, the error text shows why. |
 | System | macOS 12+ or Windows 10/11, 64-bit | Hocus needs a supported system. |
-| Vision models | Hand, face and person models are present | The first launch downloads about 12 MB. Check your internet connection. |
+| Vision models | Hand, face and person models are present | The installers include them. A build from source downloads about 12 MB on first launch, so check your internet connection. |
 | Camera access | Hocus can read your webcam | Use **Open camera settings**, allow Hocus, then restart it. Close other apps using the camera. |
 | Meeting apps | The OBS Virtual Camera driver is installed | Optional. Needed only to send video to meeting apps. See step 5. |
 
@@ -111,4 +111,4 @@ Settings are saved automatically and restored on the next launch.
 
 ## Privacy
 
-Hocus has no accounts and sends nothing to the internet apart from the one-time model download. Video stays on your computer; it only leaves through the virtual camera when you switch on **Send to meeting apps**.
+Hocus has no accounts and sends nothing to the internet. Builds from source download the vision models once, and **Install OBS** downloads OBS through Homebrew or winget. Video stays on your computer; it only leaves through the virtual camera when you switch on **Send to meeting apps**.
