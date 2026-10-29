@@ -9,7 +9,10 @@ pub fn run() {
         .plugin(tauri_plugin_dialog::init())
         .plugin(tauri_plugin_opener::init())
         .manage(engine::EngineState::default())
-        .invoke_handler(tauri::generate_handler![engine::engine_info, engine::restart_engine])
+        .invoke_handler(tauri::generate_handler![
+            engine::engine_info,
+            engine::restart_engine
+        ])
         .setup(|app| {
             if let Err(error) = engine::start(app.handle()) {
                 let state = app.state::<engine::EngineState>();

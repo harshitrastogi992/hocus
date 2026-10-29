@@ -4,8 +4,8 @@ use std::sync::Mutex;
 
 use serde::Serialize;
 use tauri::{AppHandle, Emitter, Manager};
-use tauri_plugin_shell::process::{CommandChild, CommandEvent};
 use tauri_plugin_shell::ShellExt;
+use tauri_plugin_shell::process::{CommandChild, CommandEvent};
 
 #[derive(Clone, Default, Serialize)]
 pub struct EngineInfo {
@@ -19,16 +19,28 @@ pub struct EngineState {
     pub child: Mutex<Option<CommandChild>>,
 }
 
-const SERVE_ARGS: [&str; 5] = ["serve", "--port", "0", "--exit-with-stdin", "--host=127.0.0.1"];
+const SERVE_ARGS: [&str; 5] = [
+    "serve",
+    "--port",
+    "0",
+    "--exit-with-stdin",
+    "--host=127.0.0.1",
+];
 
 pub fn start(app: &AppHandle) -> Result<(), String> {
     let token = uuid::Uuid::new_v4().simple().to_string();
     let command = if cfg!(debug_assertions) {
         // Development: run the engine from its virtualenv so Python edits apply on restart.
         let python = std::env::var("HOCUS_PYTHON").unwrap_or_else(|_| dev_python());
-        app.shell().command(python).args(["-m", "hocus"]).args(SERVE_ARGS)
+        app.shell()
+            .command(python)
+            .args(["-m", "hocus"])
+            .args(SERVE_ARGS)
     } else {
-        app.shell().sidecar("hocus-engine").map_err(|e| e.to_string())?.args(SERVE_ARGS)
+        app.shell()
+            .sidecar("hocus-engine")
+            .map_err(|e| e.to_string())?
+            .args(SERVE_ARGS)
     };
     let (mut events, child) = command
         .env("HOCUS_TOKEN", &token)
@@ -63,7 +75,11 @@ pub fn start(app: &AppHandle) -> Result<(), String> {
                     let message = format!(
                         "The Hocus engine stopped (exit code {:?}).{}",
                         status.code,
-                        if detail.is_empty() { String::new() } else { format!("\n\n{detail}") }
+                        if detail.is_empty() {
+                            String::new()
+                        } else {
+                            format!("\n\n{detail}")
+                        }
                     );
                     set_info(&app, None, Some(message));
                 }
