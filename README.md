@@ -8,6 +8,7 @@
   <img alt="macOS and Windows" src="https://img.shields.io/badge/platform-macOS%20%7C%20Windows-0b0c10?style=flat-square">
   <img alt="Built with Tauri 2" src="https://img.shields.io/badge/built%20with-Tauri%202-0b0c10?style=flat-square">
   <img alt="Runs on device" src="https://img.shields.io/badge/runs-100%25%20on%20device-0b0c10?style=flat-square">
+  <a href="https://github.com/harshitrastogi992/hocus/releases/latest"><img alt="Latest release" src="https://img.shields.io/github/v/release/harshitrastogi992/hocus?style=flat-square&color=0b0c10&label=release"></a>
   <img alt="MIT licence" src="https://img.shields.io/badge/licence-MIT-f5b544?style=flat-square">
 </p>
 
@@ -18,6 +19,17 @@ Hocus is a desktop app that watches your hands and plays effects on your camera 
 Everything runs on your computer. Your video never leaves the machine except through the virtual camera you choose to use.
 
 > Screenshots use a drawn placeholder person from the engine's demo mode. In the app, it is you.
+
+## Download
+
+Get the latest version from the **[releases page](https://github.com/harshitrastogi992/hocus/releases/latest)**.
+
+| System | File |
+|---|---|
+| macOS 12+ on Apple Silicon | `Hocus_<version>_aarch64.dmg` |
+| Windows 10 or 11, 64-bit | `Hocus_<version>_x64-setup.exe` |
+
+The installers are not yet signed, so macOS and Windows warn you the first time you open Hocus. The release notes show how to get past the warning in a few clicks. Intel Macs are not covered by the installers yet; build from source instead.
 
 ## Effects
 
@@ -103,7 +115,7 @@ Every effect has its own synthesised sound, played on your computer only. Meetin
 
 ## Get started
 
-1. **Open Hocus.** The start-up screen checks your system, downloads the vision models (about 12 MB, first launch only) and asks for camera access.
+1. **Install and open Hocus.** The start-up screen checks your system and the vision models, and asks for camera access.
 2. **Pick a background.** Under **Background**, either capture your empty room (step out of view for a few seconds) or choose a backdrop. Vanishing needs one; reactions do not.
 3. **Try an effect.** Each card in **Effects** has a **Try** button. Then make the gesture itself: a V sign for Stardust, a thumbs up for Confetti.
 4. **Go live.** Open **Output > Set up meeting apps**, follow the four steps, and choose **OBS Virtual Camera** in your meeting app.
@@ -132,11 +144,11 @@ Any gesture can be reassigned per effect. Hocus will not let two switched-on eff
 - A webcam
 - [OBS Studio](https://obsproject.com) 30 or later, only for sending video to meeting apps (Hocus can install it for you)
 
-Installers are not published yet. For now, build from source as below.
+Installers cover Apple Silicon Macs and 64-bit Windows. On an Intel Mac, build from source as below.
 
 ## Privacy
 
-No accounts, no analytics, no cloud. The only network call is the one-time model download from Google's MediaPipe model storage. The engine listens on `127.0.0.1` only and requires a random token generated at each launch.
+No accounts, no analytics, no cloud. The installers include the vision models, so Hocus itself makes no network calls; the optional **Install OBS** button uses Homebrew or winget. A build from source downloads the models once from Google's MediaPipe model storage. The engine listens on `127.0.0.1` only and requires a random token generated at each launch.
 
 ## Development
 
