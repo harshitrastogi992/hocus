@@ -16,7 +16,7 @@ dependencies = [
     "opencv-python>=4.10,<6",
     "numpy>=2.0,<3",
     "pyvirtualcam>=0.15,<1",
-    "websockets>=13,<16",
+    "websockets>=13,<18",
     "platformdirs>=4,<5",
 ]
 
