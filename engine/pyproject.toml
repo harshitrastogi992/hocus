@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "hocus"
-version = "0.1.0"
+version = "0.1.1"
 description = "Gesture-driven webcam effects engine for the Hocus desktop app"
 readme = "README.md"
 license = "MIT"
