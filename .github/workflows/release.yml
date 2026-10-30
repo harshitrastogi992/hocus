@@ -52,6 +52,16 @@ jobs:
           pnpm install --frozen-lockfile
           pnpm tauri build --config src-tauri/tauri.release.conf.json --bundles ${{ matrix.bundles }}
 
+      - name: Smoke-test the packaged engine
+        shell: bash
+        run: |
+          bundle=app/src-tauri/target/release
+          if [ "${{ runner.os }}" = "macOS" ]; then
+            "$bundle/bundle/macos/Hocus.app/Contents/MacOS/hocus-engine" --help
+          else
+            "$bundle/hocus-engine.exe" --help
+          fi
+
       - name: Collect installers
         shell: bash
         run: |

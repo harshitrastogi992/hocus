@@ -3,7 +3,8 @@
   "bundle": {
     "externalBin": ["binaries/hocus-engine"],
     "macOS": {
-      "signingIdentity": "-"
+      "signingIdentity": "-",
+      "hardenedRuntime": false
     }
   }
 }
