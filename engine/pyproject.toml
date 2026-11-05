@@ -12,7 +12,7 @@ requires-python = ">=3.11,<3.14"
 dependencies = [
     # 1.0.x crashes on Apple Silicon when creating hand/face landmarkers
     # ("graph_service.h: Service is unavailable").
-    "mediapipe==1.1.1",
+    "mediapipe==1.2.0",
     "opencv-python>=4.10,<6",
     "numpy>=2.0,<3",
     "pyvirtualcam>=0.15,<1",
